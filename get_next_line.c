@@ -6,7 +6,7 @@
 /*   By: johnavar <johnavar@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 14:57:36 by johnavar          #+#    #+#             */
-/*   Updated: 2023/05/15 15:52:10 by johnavar         ###   ########.fr       */
+/*   Updated: 2023/05/15 16:22:43 by johnavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,22 +46,22 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
-/*int	main(int ac, char **av)*/
-/*{*/
-	/*int		fd;*/
-	/*char	*str;*/
+int	main(int ac, char **av)
+{
+	int		fd;
+	char	*str;
 
-	/*(void)ac;*/
-	/*fd = open(av[1], O_RDONLY);*/
-	/*str = get_next_line(fd);*/
-	/*printf("line => %s\n", str);*/
-	/*free(str);*/
-	/*str = get_next_line(fd);*/
-	/*printf("line2 => %s\n", str);*/
-	/*free(str);*/
-	/*str = get_next_line(fd);*/
-	/*printf("line3 => %s\n", str);*/
-	/*free(str);*/
-	/*close(fd);*/
-	/*return (0);*/
-/*}*/
+	(void)ac;
+	fd = open(av[1], O_RDONLY);
+	str = get_next_line(fd);
+	printf("line => %s\n", str);
+	free(str);
+	str = get_next_line(fd);
+	printf("line2 => %s\n", str);
+	free(str);
+	str = get_next_line(fd);
+	printf("line3 => %s\n", str);
+	free(str);
+	close(fd);
+	return (0);
+}
