@@ -6,7 +6,7 @@
 /*   By: johnavar <johnavar@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 12:14:20 by johnavar          #+#    #+#             */
-/*   Updated: 2023/05/15 16:22:45 by johnavar         ###   ########.fr       */
+/*   Updated: 2023/05/16 10:12:54 by johnavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
-# define BUFFER_SIZE 1
+// # define BUFFER_SIZE 4
 
 char	*get_next_line(int fd);
 int		ft_line_len(char *str, int *i);

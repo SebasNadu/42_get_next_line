@@ -6,7 +6,7 @@
 /*   By: johnavar <johnavar@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 20:40:37 by johnavar          #+#    #+#             */
-/*   Updated: 2023/05/15 16:22:44 by johnavar         ###   ########.fr       */
+/*   Updated: 2023/05/16 10:10:42 by johnavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,21 +35,22 @@ char	*ft_join_line(char *line, char *buff)
 	i = ft_strlen(line);
 	j = ft_strlen(buff);
 	new_line = (char *)malloc(sizeof(char) * (i + j + 1));
-	if (!new_line)
-		return (NULL);
-	i = 0;
-	j = 0;
-	while (line && line[i])
+	if (new_line)
 	{
-		new_line[i] = line[i];
-		i++;
-	}
-	while (buff && buff[j] && buff[j] != '\n')
-	{
+		i = -1;
+		j = -1;
+		while (line && line[++i])
+			new_line[i] = line[i];
+		if (i == -1)
+			i = 0;
+		while (buff && buff[++j] && buff[j] != '\n')
+			new_line[i + j] = buff[j];
 		new_line[i + j] = buff[j];
-		j++;
+		if ((buff && buff[j] && buff[j] == '\n') || j == -1)
+			j++;
+		new_line[i + j] = '\0';
 	}
-	new_line[i + j] = '\0';
+	free(line);
 	return (new_line);
 }
 
@@ -76,13 +77,11 @@ void	after_n(char *buff)
 
 	i = 0;
 	j = 0;
-	while (buff && buff[i] && buff[i] != '\n')
+	while (buff[i] && buff[i] != '\n')
 		i++;
 	if (buff[i] && buff[i] == '\n')
 		i++;
-	if (buff[i] == '\0')
-		return ;
-	while (buff[i + j])
+	while (j < BUFFER_SIZE - i && buff[i + j])
 	{
 		buff[j] = buff[i + j];
 		j++;
