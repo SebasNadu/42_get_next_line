@@ -1,22 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: johnavar <johnavar@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/11 12:14:20 by johnavar          #+#    #+#             */
-/*   Updated: 2023/05/16 17:28:08 by yourLogin        ###   ########.fr       */
+/*   Created: 2023/05/16 15:52:39 by johnavar          #+#    #+#             */
+/*   Updated: 2023/05/16 17:29:40 by yourLogin        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
 
 # include <fcntl.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+
+typedef struct s_lines
+{
+	char			buff[BUFFER_SIZE + 1];
+	int				fd;
+	struct s_lines	*next;
+}					t_lines;
 
 char	*get_next_line(int fd);
 int		ft_line_len(char *str, int *i);

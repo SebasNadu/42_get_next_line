@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: johnavar <johnavar@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: johnavar <johnavar@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/11 20:40:37 by johnavar          #+#    #+#             */
-/*   Updated: 2023/05/16 15:54:40 by johnavar         ###   ########.fr       */
+/*   Created: 2023/05/16 15:54:16 by johnavar          #+#    #+#             */
+/*   Updated: 2023/05/16 15:54:37 by johnavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 void	set_line(char **line, char *buff)
 {
