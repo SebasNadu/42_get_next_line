@@ -6,7 +6,7 @@
 /*   By: johnavar <johnavar@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 20:40:37 by johnavar          #+#    #+#             */
-/*   Updated: 2023/05/16 10:10:42 by johnavar         ###   ########.fr       */
+/*   Updated: 2023/05/16 11:14:55 by johnavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ int	ft_strlen(char *str)
 	int	i;
 
 	i = 0;
-	if (!str)
-		return (0);
 	while (str && str[i] && str[i] != '\n')
 		i++;
 	if (str && str[i] && str[i] == '\n')
