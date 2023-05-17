@@ -6,7 +6,7 @@
 /*   By: johnavar <johnavar@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 14:57:36 by johnavar          #+#    #+#             */
-/*   Updated: 2023/05/16 11:58:28 by johnavar         ###   ########.fr       */
+/*   Updated: 2023/05/17 08:44:25 by johnavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,8 @@
 char	*ft_free(char *str)
 {
 	free(str);
-	return (NULL);
-}
-
-void	set_line(char *buff, char **line)
-{
-	*line = ft_join_line(*line, buff);
-	if (*line[0] == '\0')
-		*line = ft_free(*line);
+	str = NULL;
+	return (str);
 }
 
 char	*get_next_line(int fd)
@@ -38,7 +32,7 @@ char	*get_next_line(int fd)
 	if (find_n(buff) >= 0)
 	{
 		after_n(buff);
-		set_line(buff, &line);
+		set_line(&line, buff);
 	}
 	while (find_n(buff) == -1 && bytes_read > 0)
 	{
@@ -71,4 +65,4 @@ int	main(int ac, char **av)
 	free(str);
 	close(fd);
 	return (0);
-} */
+}*/
