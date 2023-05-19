@@ -6,7 +6,7 @@
 /*   By: johnavar <johnavar@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 12:14:20 by johnavar          #+#    #+#             */
-/*   Updated: 2023/05/17 08:44:48 by johnavar         ###   ########.fr       */
+/*   Updated: 2023/05/18 09:47:35 by johnavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,7 @@ void	set_line(char **line, char *buff);
 char	*ft_free(char *str);
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 99
+#  define BUFFER_SIZE 80
 # endif
 
-#endif
-
-#ifndef BUFFER_SIZE
-# define BUFFER_SIZE 10000000
 #endif
