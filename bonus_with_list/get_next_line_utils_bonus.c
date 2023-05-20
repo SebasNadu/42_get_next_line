@@ -6,7 +6,7 @@
 /*   By: johnavar <johnavar@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:54:16 by johnavar          #+#    #+#             */
-/*   Updated: 2023/05/18 10:00:14 by johnavar         ###   ########.fr       */
+/*   Updated: 2023/05/20 15:47:07 by johnavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ int	ft_strlen(char *str)
 	return (i);
 }
 
-char	*ft_join_line(char *line, char *buff)
+char	*ft_join_line(char *line, t_lines *tmp)
 {
 	int		i;
 	int		j;
 	char	*new_line;
 
-	new_line = malloc(sizeof(char) * (ft_strlen(line) + ft_strlen(buff) + 1));
+	new_line = malloc(sizeof(char) * (ft_strlen(line) + tmp->bytes_read + 1));
 	if (new_line)
 	{
 		i = -1;
@@ -41,10 +41,10 @@ char	*ft_join_line(char *line, char *buff)
 			new_line[i] = line[i];
 		if (i == -1)
 			i = 0;
-		while (buff && buff[++j] && buff[j] != '\n')
-			new_line[i + j] = buff[j];
-		new_line[i + j] = buff[j];
-		if ((buff && buff[j] && buff[j] == '\n') || j == -1)
+		while (++j < tmp->bytes_read - 1 && tmp->buff[j] != '\n')
+			new_line[i + j] = tmp->buff[j];
+		new_line[i + j] = tmp->buff[j];
+		if ((j < tmp->bytes_read && tmp->buff[j] == '\n') || j == -1)
 			j++;
 		new_line[i + j] = '\0';
 	}
@@ -73,30 +73,48 @@ int	find_n(char *str)
 	return (-1);
 }
 
-void	after_n(char *buff)
+void	*ft_memmove(void *dst, const void *src, size_t len)
 {
-	int	i;
-	int	j;
+	char		*dest;
+	const char	*source;
 
-	i = 0;
-	j = 0;
-	while (buff[i] && buff[i] != '\n')
-		i++;
-	if (buff[i] && buff[i] == '\n')
-		i++;
-	while (j < BUFFER_SIZE - i && buff[i + j])
+	if (dst == NULL && src == NULL)
+		return (NULL);
+	if (dst == src)
+		return (dst);
+	dest = (char *)dst;
+	source = (char *)src;
+	if (dest >= source)
 	{
-		buff[j] = buff[i + j];
-		j++;
+		while (len)
+		{
+			len--;
+			*(dest + len) = *(source + len);
+		}
+		return (dst);
 	}
-	buff[j] = '\0';
+	while (len)
+	{
+		*dest++ = *source++;
+		len--;
+	}
+	return (dst);
 }
 
 void	set_line(char **line, t_lines **tmp)
 {
-	after_n((*tmp)->buff);
-	*line = ft_join_line(*line, (*tmp)->buff);
-	if (*line[0] == '\0')
+	char	*tmp_src;
+	int		i;
+
+	i = 0;
+	while ((*tmp)->buff[i] && (*tmp)->buff[i] != '\n')
+		i++;
+	if ((*tmp)->buff[i] && (*tmp)->buff[i] == '\n')
+		i++;
+	tmp_src = (*tmp)->buff + i;
+	ft_memmove((*tmp)->buff, tmp_src, (*tmp)->bytes_read - (i - 1));
+	*line = ft_join_line(*line, *tmp);
+	if ((*line)[0] == '\0')
 	{
 		free(*line);
 		*line = NULL;

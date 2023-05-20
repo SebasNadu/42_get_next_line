@@ -6,7 +6,7 @@
 /*   By: johnavar <johnavar@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 12:14:20 by johnavar          #+#    #+#             */
-/*   Updated: 2023/05/18 11:04:53 by johnavar         ###   ########.fr       */
+/*   Updated: 2023/05/20 16:04:04 by johnavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,10 @@
 # include <stdlib.h>
 # include <unistd.h>
 
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 80
+# endif
+
 char	*get_next_line(int fd);
 int		ft_line_len(char *str, int *i);
 char	*ft_join_line(char *line, char *buff);
@@ -26,9 +30,5 @@ int		find_n(char *str);
 void	after_n(char *str);
 void	set_line(char **line, char *buff);
 char	*ft_free(char *str);
-
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 80
-# endif
 
 #endif

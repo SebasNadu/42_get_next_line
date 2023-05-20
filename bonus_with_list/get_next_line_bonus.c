@@ -6,7 +6,7 @@
 /*   By: johnavar <johnavar@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:45:49 by johnavar          #+#    #+#             */
-/*   Updated: 2023/05/18 10:31:31 by johnavar         ###   ########.fr       */
+/*   Updated: 2023/05/20 15:54:03 by johnavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,12 @@
 char	*ft_free(char *str)
 {
 	free(str);
-	str = NULL;
 	return (str);
 }
 
 t_lines	*find_lst(t_lines *storage, int fd)
 {
-	while (storage)
+	while (storage != NULL)
 	{
 		if (storage->fd == fd)
 			return (storage);
@@ -39,6 +38,7 @@ t_lines	*ft_lstadd_back(t_lines	**storage, int fd)
 	if (!new_lst)
 		return (NULL);
 	new_lst->fd = fd;
+	new_lst->bytes_read = 1;
 	new_lst->next = NULL;
 	if (!*storage)
 	{
@@ -56,11 +56,9 @@ char	*get_next_line(int fd)
 {
 	static t_lines	*storage = NULL;
 	t_lines			*tmp;
-	int				bytes_read;
 	char			*line;
 
 	line = NULL;
-	bytes_read = 1;
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	tmp = find_lst(storage, fd);
@@ -68,19 +66,19 @@ char	*get_next_line(int fd)
 		tmp = ft_lstadd_back(&storage, fd);
 	if (find_n(tmp->buff) >= 0)
 		set_line(&line, &tmp);
-	while (find_n(tmp->buff) == -1 && bytes_read > 0)
+	while (find_n(tmp->buff) == -1 && tmp->bytes_read > 0)
 	{
-		bytes_read = read(fd, tmp->buff, BUFFER_SIZE);
-		if (bytes_read < 0)
+		tmp->bytes_read = read(fd, tmp->buff, BUFFER_SIZE);
+		if (tmp->bytes_read < 0)
 			return (ft_free(line));
-		if (bytes_read == 0)
+		if (tmp->bytes_read == 0)
 			return (line);
-		tmp->buff[bytes_read] = '\0';
-		line = ft_join_line(line, tmp->buff);
+		tmp->buff[tmp->bytes_read] = '\0';
+		line = ft_join_line(line, tmp);
 	}
 	return (line);
 }
-
+/*
 int	main(void)
 {
 	char	*line;
@@ -110,4 +108,4 @@ int	main(void)
 	close(fd2);
 	close(fd3);
 	return (0);
-}
+} */

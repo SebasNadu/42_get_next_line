@@ -6,7 +6,7 @@
 /*   By: johnavar <johnavar@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 20:40:37 by johnavar          #+#    #+#             */
-/*   Updated: 2023/05/19 10:05:35 by johnavar         ###   ########.fr       */
+/*   Updated: 2023/05/20 17:06:05 by johnavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	set_line(char **line, char *buff)
 {
+	after_n(buff);
 	*line = ft_join_line(*line, buff);
 	if (*line[0] == '\0')
 	{
@@ -40,19 +41,20 @@ char	*ft_join_line(char *line, char *buff)
 	int		j;
 	char	*new_line;
 
-	i = ft_strlen(line);
-	j = ft_strlen(buff);
-	new_line = (char *)malloc(sizeof(char) * (i + j + 1));
+	new_line = malloc(sizeof(char) * (ft_strlen(line) + ft_strlen(buff) + 1));
 	if (new_line)
 	{
 		i = -1;
-		j = -1;
+		j = 0;
 		while (line && line[++i])
 			new_line[i] = line[i];
 		if (i == -1)
 			i = 0;
-		while (buff && buff[++j] && buff[j] != '\n')
+		while (buff && buff[j] && buff[j] != '\n')
+		{
 			new_line[i + j] = buff[j];
+			j++;
+		}
 		new_line[i + j] = buff[j];
 		if ((buff && buff[j] && buff[j] == '\n') || j == -1)
 			j++;

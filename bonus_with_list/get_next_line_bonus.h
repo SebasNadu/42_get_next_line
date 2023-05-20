@@ -6,7 +6,7 @@
 /*   By: johnavar <johnavar@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/16 15:52:39 by johnavar          #+#    #+#             */
-/*   Updated: 2023/05/18 08:09:34 by johnavar         ###   ########.fr       */
+/*   Updated: 2023/05/20 15:53:36 by johnavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,13 @@ typedef struct s_lines
 {
 	char			buff[BUFFER_SIZE + 1];
 	int				fd;
+	int				bytes_read;
 	struct s_lines	*next;
 }					t_lines;
 
 char	*get_next_line(int fd);
 int		ft_line_len(char *str, int *i);
-char	*ft_join_line(char *line, char *buff);
+char	*ft_join_line(char *line, t_lines *tmp);
 int		ft_strlen(char *str);
 int		find_n(char *str);
 void	after_n(char *str);
