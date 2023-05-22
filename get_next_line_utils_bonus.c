@@ -6,20 +6,25 @@
 /*   By: johnavar <johnavar@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 20:40:37 by johnavar          #+#    #+#             */
-/*   Updated: 2023/05/19 10:05:35 by johnavar         ###   ########.fr       */
+/*   Updated: 2023/05/22 19:23:23 by johnavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 
-void	set_line(char **line, char *buff)
+void	*ft_calloc(size_t count, size_t size)
 {
-	*line = ft_join_line(*line, buff);
-	if (*line[0] == '\0')
-	{
-		free(*line);
-		*line = NULL;
-	}
+	size_t	len;
+	void	*ptr;
+
+	len = count * size;
+	ptr = malloc(len);
+	if (ptr == NULL)
+		return (NULL);
+	else
+		while (len > 0)
+			((unsigned char *)ptr)[--len] = 0;
+	return (ptr);
 }
 
 int	ft_strlen(char *str)
@@ -42,7 +47,7 @@ char	*ft_join_line(char *line, char *buff)
 
 	i = ft_strlen(line);
 	j = ft_strlen(buff);
-	new_line = (char *)malloc(sizeof(char) * (i + j + 1));
+	new_line = (char *)ft_calloc((i + j + 1), sizeof(char));
 	if (new_line)
 	{
 		i = -1;

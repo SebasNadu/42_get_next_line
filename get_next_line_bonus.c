@@ -6,7 +6,7 @@
 /*   By: johnavar <johnavar@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 14:57:36 by johnavar          #+#    #+#             */
-/*   Updated: 2023/05/19 11:14:27 by johnavar         ###   ########.fr       */
+/*   Updated: 2023/05/22 19:23:21 by johnavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,17 @@ char	*ft_free(char *str)
 	free(str);
 	str = NULL;
 	return (str);
+}
+
+void	set_line(char **line, char *buff)
+{
+	after_n(buff);
+	*line = ft_join_line(*line, buff);
+	if (*line[0] == '\0')
+	{
+		free(*line);
+		*line = NULL;
+	}
 }
 
 char	*get_next_line(int fd)
@@ -30,10 +41,7 @@ char	*get_next_line(int fd)
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
 	if (find_n(buff[fd]) >= 0)
-	{
-		after_n(buff[fd]);
 		set_line(&line, buff[fd]);
-	}
 	while (find_n(buff[fd]) == -1 && bytes_read > 0)
 	{
 		bytes_read = read(fd, buff[fd], BUFFER_SIZE);
