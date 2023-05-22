@@ -6,7 +6,7 @@
 /*   By: johnavar <johnavar@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 20:40:37 by johnavar          #+#    #+#             */
-/*   Updated: 2023/05/22 20:02:05 by johnavar         ###   ########.fr       */
+/*   Updated: 2023/05/22 20:06:47 by johnavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ char	*ft_join_line(char *line, char *buff)
 	int		j;
 	char	*new_line;
 
-	new_line = malloc(sizeof(char) * (ft_strlen(line) + ft_strlen(buff) + 1));
+	new_line = ft_calloc((ft_strlen(line) + ft_strlen(buff) + 1), sizeof(char));
 	if (new_line)
 	{
 		i = -1;

@@ -6,7 +6,7 @@
 /*   By: johnavar <johnavar@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 14:57:36 by johnavar          #+#    #+#             */
-/*   Updated: 2023/05/20 16:04:27 by johnavar         ###   ########.fr       */
+/*   Updated: 2023/05/22 20:09:50 by johnavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,16 @@ char	*ft_free(char *str)
 	free(str);
 	str = NULL;
 	return (str);
+}
+
+void	set_line(char **line, char *buff)
+{
+	*line = ft_join_line(*line, buff);
+	if (*line[0] == '\0')
+	{
+		free(*line);
+		*line = NULL;
+	}
 }
 
 char	*get_next_line(int fd)

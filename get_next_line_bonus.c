@@ -6,7 +6,7 @@
 /*   By: johnavar <johnavar@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 14:57:36 by johnavar          #+#    #+#             */
-/*   Updated: 2023/05/22 20:00:57 by johnavar         ###   ########.fr       */
+/*   Updated: 2023/05/22 20:07:42 by johnavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	set_line(char **line, char *buff)
 
 char	*get_next_line(int fd)
 {
-	static char	buff[1000001][BUFFER_SIZE + 1];
+	static char	buff[4096][BUFFER_SIZE + 1];
 	int			bytes_read;
 	char		*line;
 
