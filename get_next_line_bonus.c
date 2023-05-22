@@ -6,7 +6,7 @@
 /*   By: johnavar <johnavar@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 14:57:36 by johnavar          #+#    #+#             */
-/*   Updated: 2023/05/20 16:54:54 by johnavar         ###   ########.fr       */
+/*   Updated: 2023/05/22 19:55:30 by johnavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*ft_free(char *str)
 
 char	*get_next_line(int fd)
 {
-	static char	buff[1025][BUFFER_SIZE + 1];
+	static char	buff[1000001][BUFFER_SIZE + 1];
 	int			bytes_read;
 	char		*line;
 
