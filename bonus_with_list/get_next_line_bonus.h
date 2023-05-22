@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: johnavar <johnavar@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/11 12:14:20 by johnavar          #+#    #+#             */
-/*   Updated: 2023/05/22 20:01:20 by johnavar         ###   ########.fr       */
+/*   Created: 2023/05/16 15:52:39 by johnavar          #+#    #+#             */
+/*   Updated: 2023/05/19 15:57:16 by johnavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,20 @@
 #  define BUFFER_SIZE 80
 # endif
 
+typedef struct s_lines
+{
+	char			buff[BUFFER_SIZE + 1];
+	int				fd;
+	struct s_lines	*next;
+}					t_lines;
+
 char	*get_next_line(int fd);
 int		ft_line_len(char *str, int *i);
 char	*ft_join_line(char *line, char *buff);
 int		ft_strlen(char *str);
 int		find_n(char *str);
 void	after_n(char *str);
-void	set_line(char **line, char *buff);
+void	set_line(char **line, t_lines **tmp);
 char	*ft_free(char *str);
-void	*ft_calloc(size_t count, size_t size);
 
 #endif

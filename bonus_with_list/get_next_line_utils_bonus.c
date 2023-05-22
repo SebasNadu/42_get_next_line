@@ -3,35 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: johnavar <johnavar@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: johnavar <johnavar@student.42berlin.d      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/11 20:40:37 by johnavar          #+#    #+#             */
-/*   Updated: 2023/05/22 20:02:05 by johnavar         ###   ########.fr       */
+/*   Created: 2023/05/16 15:54:16 by johnavar          #+#    #+#             */
+/*   Updated: 2023/05/19 15:57:21 by johnavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
-
-void	*ft_calloc(size_t count, size_t size)
-{
-	size_t	len;
-	void	*ptr;
-
-	len = count * size;
-	ptr = malloc(len);
-	if (ptr == NULL)
-		return (NULL);
-	else
-		while (len > 0)
-			((unsigned char *)ptr)[--len] = 0;
-	return (ptr);
-}
 
 int	ft_strlen(char *str)
 {
 	int	i;
 
 	i = 0;
+	if (!str)
+		return (0);
 	while (str && str[i] && str[i] != '\n')
 		i++;
 	if (str && str[i] && str[i] == '\n')
@@ -49,20 +36,22 @@ char	*ft_join_line(char *line, char *buff)
 	if (new_line)
 	{
 		i = -1;
-		j = 0;
+		j = -1;
 		while (line && line[++i])
 			new_line[i] = line[i];
 		if (i == -1)
 			i = 0;
-		while (buff && buff[j] && buff[j] != '\n')
-		{
+		while (buff && buff[++j] && buff[j] != '\n')
 			new_line[i + j] = buff[j];
-			j++;
-		}
 		new_line[i + j] = buff[j];
 		if ((buff && buff[j] && buff[j] == '\n') || j == -1)
 			j++;
 		new_line[i + j] = '\0';
+	}
+	else
+	{
+		free(new_line);
+		return (NULL);
 	}
 	free(line);
 	return (new_line);
@@ -101,4 +90,16 @@ void	after_n(char *buff)
 		j++;
 	}
 	buff[j] = '\0';
+}
+
+void	set_line(char **line, t_lines **tmp)
+{
+	after_n((*tmp)->buff);
+	*line = ft_join_line(*line, (*tmp)->buff);
+	if (*line[0] == '\0')
+	{
+		free(*line);
+		*line = NULL;
+		free(*tmp);
+	}
 }
