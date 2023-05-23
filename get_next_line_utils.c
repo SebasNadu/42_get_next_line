@@ -6,26 +6,11 @@
 /*   By: johnavar <johnavar@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 20:40:37 by johnavar          #+#    #+#             */
-/*   Updated: 2023/05/22 20:09:32 by johnavar         ###   ########.fr       */
+/*   Updated: 2023/05/23 13:00:18 by johnavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-void	*ft_calloc(size_t count, size_t size)
-{
-	size_t	len;
-	void	*ptr;
-
-	len = count * size;
-	ptr = malloc(len);
-	if (ptr == NULL)
-		return (NULL);
-	else
-		while (len > 0)
-			((unsigned char *)ptr)[--len] = 0;
-	return (ptr);
-}
 
 int	ft_strlen(char *str)
 {
@@ -45,7 +30,7 @@ char	*ft_join_line(char *line, char *buff)
 	int		j;
 	char	*new_line;
 
-	new_line = ft_calloc((ft_strlen(line) + ft_strlen(buff) + 1), sizeof(char));
+	new_line = malloc((ft_strlen(line) + ft_strlen(buff) + 1) * sizeof(char));
 	if (new_line)
 	{
 		i = -1;

@@ -6,7 +6,7 @@
 /*   By: johnavar <johnavar@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 12:14:20 by johnavar          #+#    #+#             */
-/*   Updated: 2023/05/22 20:10:20 by johnavar         ###   ########.fr       */
+/*   Updated: 2023/05/23 12:57:41 by johnavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ int		find_n(char *str);
 void	after_n(char *str);
 void	set_line(char **line, char *buff);
 char	*ft_free(char *str);
-void	*ft_calloc(size_t count, size_t size);
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 80

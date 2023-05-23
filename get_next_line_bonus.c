@@ -6,7 +6,7 @@
 /*   By: johnavar <johnavar@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 14:57:36 by johnavar          #+#    #+#             */
-/*   Updated: 2023/05/22 20:07:42 by johnavar         ###   ########.fr       */
+/*   Updated: 2023/05/23 13:18:52 by johnavar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,21 +24,23 @@ void	set_line(char **line, char *buff)
 	*line = ft_join_line(*line, buff);
 	if (*line[0] == '\0')
 	{
-		free(*line);
+		free(line);
 		*line = NULL;
 	}
 }
 
 char	*get_next_line(int fd)
 {
-	static char	buff[4096][BUFFER_SIZE + 1];
+	static char	*buff[4096];
 	int			bytes_read;
 	char		*line;
 
 	line = NULL;
 	bytes_read = 1;
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 		return (NULL);
+	if (!buff[fd])
+		buff[fd] = malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (find_n(buff[fd]) >= 0)
 		set_line(&line, buff[fd]);
 	while (find_n(buff[fd]) == -1 && bytes_read > 0)
